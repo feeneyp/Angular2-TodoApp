@@ -2,14 +2,14 @@
 
 <h1>ToDos List</h1>
     <div class="controls">
-        <span  class="new-todo">Add new Todo <strong>+</strong></span>
+        <span (click)="createtodo()" class="new-todo">Add new Todo <strong>+</strong></span>
     </div>
     <ul class="list-group form-inline">
-        <li  class="list-group-item completed" >
-           <input  type="checkbox" />
-           <label  class="todo-title">{{todo.name}}</label>
-           <input type="text"   (blur)="todo.editing = false"/>
-           <button type="button" class="close" aria-label="Close">
+        <li *ngfor="todo in todos" class="list-group-item completed" >
+           <input [(ngmodel)]="todo.completed" type="checkbox" />
+           <label (click)="todo.editing=true" [hidden]="editing" class="todo-title">{{todo.name}}</label>
+           <input [(ngmodel)]="todo.name" type="text" (blur)="todo.editing = false"/>
+           <button (click)="deletetodo()" type="button" class="close" aria-label="Close">
             <span aria-hidden="true">&times;</span>
            </button>
         </li>
